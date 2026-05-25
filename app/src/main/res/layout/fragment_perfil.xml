@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fondo_gris">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Header -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:background="@color/blanco" android:padding="16dp" android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <ImageButton
+                android:id="@+id/btnVolverInicio"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_arrow_back"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Volver al inicio"
+                android:layout_marginEnd="8dp"/>
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:text="Mi Perfil" android:textSize="20sp"
+                android:textStyle="bold" android:textColor="@color/texto_primario"/>
+        </LinearLayout>
+
+        <!-- Avatar + Nombre -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:gravity="center"
+            android:padding="24dp" android:background="@color/blanco">
+
+            <FrameLayout
+                android:id="@+id/layoutAvatar"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_marginBottom="12dp"
+                android:clickable="true"
+                android:focusable="true">
+                <ImageView android:id="@+id/imgAvatarPerfil"
+                    android:layout_width="90dp" android:layout_height="90dp"
+                    android:background="@drawable/bg_avatar"
+                    android:scaleType="centerCrop"
+                    android:src="@android:drawable/ic_menu_gallery"/>
+                <ImageButton android:layout_width="28dp" android:layout_height="28dp"
+                    android:layout_gravity="bottom|end"
+                    android:background="@drawable/bg_btn_editar_avatar"
+                    android:src="@drawable/ic_brush"
+                    android:contentDescription="Editar foto"/>
+            </FrameLayout>
+
+            <TextView android:id="@+id/txtNombre" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:text="Nombre del Usuario"
+                android:textSize="18sp" android:textStyle="bold" android:textColor="@color/texto_primario"/>
+            <TextView android:id="@+id/txtFacultad" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:text="Facultad - Semestre"
+                android:textSize="13sp" android:textColor="@color/verde_teal" android:layout_marginTop="4dp"/>
+
+            <!-- Botón editar perfil -->
+            <Button android:id="@+id/btnEditarPerfil"
+                android:layout_width="wrap_content" android:layout_height="36dp"
+                android:text="Editar perfil"
+                android:textSize="12sp" android:textColor="@color/verde_principal"
+                android:layout_marginTop="12dp"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:strokeColor="@color/verde_principal"/>
+        </LinearLayout>
+
+        <!-- Stats: Ventas / Calificación / Favoritos -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:background="@color/blanco"
+            android:layout_marginBottom="12dp">
+
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:orientation="vertical" android:gravity="center"
+                android:padding="16dp">
+                <TextView android:id="@+id/txtVentas" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:text="0" android:textSize="20sp"
+                    android:textStyle="bold" android:textColor="@color/texto_primario"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Ventas" android:textSize="12sp" android:textColor="@color/gris_texto"/>
+            </LinearLayout>
+
+            <View android:layout_width="1dp" android:layout_height="40dp"
+                android:background="@color/gris_borde" android:layout_gravity="center_vertical"/>
+
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:orientation="vertical" android:gravity="center"
+                android:padding="16dp">
+                <TextView android:id="@+id/txtCalificacion" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:text="0.0" android:textSize="20sp"
+                    android:textStyle="bold" android:textColor="@color/texto_primario"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Calificacion" android:textSize="12sp" android:textColor="@color/gris_texto"/>
+            </LinearLayout>
+
+            <View android:layout_width="1dp" android:layout_height="40dp"
+                android:background="@color/gris_borde" android:layout_gravity="center_vertical"/>
+
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:orientation="vertical" android:gravity="center"
+                android:padding="16dp">
+                <TextView android:id="@+id/txtFavoritos" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:text="0" android:textSize="20sp"
+                    android:textStyle="bold" android:textColor="@color/texto_primario"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Favoritos" android:textSize="12sp" android:textColor="@color/gris_texto"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Mis Publicaciones -->
+        <androidx.cardview.widget.CardView android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp" android:layout_marginBottom="12dp"
+            app:cardCornerRadius="16dp" app:cardElevation="2dp" app:cardBackgroundColor="@color/blanco">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="16dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical"
+                    android:layout_marginBottom="12dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="Mis Publicaciones"
+                        android:textSize="15sp" android:textStyle="bold" android:textColor="@color/texto_primario"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Ver todas" android:textSize="13sp" android:textColor="@color/verde_teal"/>
+                </LinearLayout>
+                <androidx.recyclerview.widget.RecyclerView android:id="@+id/recyclerMisPublicaciones"
+                    android:layout_width="match_parent" android:layout_height="120dp"
+                    android:nestedScrollingEnabled="false"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Favoritos y Ajustes -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp" android:layout_marginBottom="12dp">
+
+            <androidx.cardview.widget.CardView android:layout_width="0dp" android:layout_height="120dp"
+                android:layout_weight="1" android:layout_marginEnd="6dp"
+                app:cardCornerRadius="16dp" app:cardElevation="2dp" app:cardBackgroundColor="@color/blanco">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                    android:orientation="vertical" android:padding="16dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Favoritos" android:textSize="15sp" android:textStyle="bold"
+                        android:textColor="@color/texto_primario" android:layout_marginBottom="6dp"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Articulos guardados" android:textSize="12sp" android:textColor="@color/gris_texto"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView android:layout_width="0dp" android:layout_height="120dp"
+                android:layout_weight="1" android:layout_marginStart="6dp"
+                app:cardCornerRadius="16dp" app:cardElevation="2dp" app:cardBackgroundColor="@color/blanco">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                    android:orientation="vertical" android:padding="16dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Ajustes" android:textSize="15sp" android:textStyle="bold"
+                        android:textColor="@color/texto_primario" android:layout_marginBottom="10dp"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Notificaciones" android:textSize="12sp" android:textColor="@color/gris_texto"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Privacidad" android:textSize="12sp" android:textColor="@color/gris_texto"
+                        android:layout_marginTop="4dp"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+        <!-- Soporte -->
+        <androidx.cardview.widget.CardView android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp" android:layout_marginBottom="12dp"
+            app:cardCornerRadius="16dp" app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/texto_primario">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:gravity="center_vertical" android:padding="20dp">
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:orientation="vertical">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Necesitas ayuda?" android:textSize="15sp" android:textStyle="bold"
+                        android:textColor="@color/blanco"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Soporte tecnico y centro de ayuda" android:textSize="12sp"
+                        android:textColor="#AAAAAA"/>
+                </LinearLayout>
+                <ImageView android:layout_width="24dp" android:layout_height="24dp"
+                    android:src="@android:drawable/ic_menu_share"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

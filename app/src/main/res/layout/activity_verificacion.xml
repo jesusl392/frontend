@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#EEF2F5"
+    android:padding="24dp">
+
+    <!-- Volver -->
+    <ImageButton
+        android:id="@+id/btnVolver"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:src="@drawable/ic_arrow_back"
+        android:background="@drawable/bg_btn_volver"
+        android:contentDescription="Volver"
+        android:layout_marginBottom="32dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Verificacion de correo"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/texto_primario"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/txtCorreoEnviado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ingresa el codigo de 6 digitos enviado a tu correo"
+        android:textSize="14sp"
+        android:textColor="@color/texto_secundario"
+        android:layout_marginBottom="40dp"/>
+
+    <!-- 6 cajas del código -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="32dp">
+
+        <EditText android:id="@+id/etCodigo1"
+            android:layout_width="52dp" android:layout_height="64dp"
+            android:background="@drawable/bg_codigo_box"
+            android:gravity="center" android:inputType="number"
+            android:maxLength="1" android:textSize="24sp" android:textStyle="bold"
+            android:textColor="@color/texto_primario" android:layout_marginEnd="8dp"/>
+
+        <EditText android:id="@+id/etCodigo2"
+            android:layout_width="52dp" android:layout_height="64dp"
+            android:background="@drawable/bg_codigo_box"
+            android:gravity="center" android:inputType="number"
+            android:maxLength="1" android:textSize="24sp" android:textStyle="bold"
+            android:textColor="@color/texto_primario" android:layout_marginEnd="8dp"/>
+
+        <EditText android:id="@+id/etCodigo3"
+            android:layout_width="52dp" android:layout_height="64dp"
+            android:background="@drawable/bg_codigo_box"
+            android:gravity="center" android:inputType="number"
+            android:maxLength="1" android:textSize="24sp" android:textStyle="bold"
+            android:textColor="@color/texto_primario" android:layout_marginEnd="16dp"/>
+
+        <EditText android:id="@+id/etCodigo4"
+            android:layout_width="52dp" android:layout_height="64dp"
+            android:background="@drawable/bg_codigo_box"
+            android:gravity="center" android:inputType="number"
+            android:maxLength="1" android:textSize="24sp" android:textStyle="bold"
+            android:textColor="@color/texto_primario" android:layout_marginEnd="8dp"/>
+
+        <EditText android:id="@+id/etCodigo5"
+            android:layout_width="52dp" android:layout_height="64dp"
+            android:background="@drawable/bg_codigo_box"
+            android:gravity="center" android:inputType="number"
+            android:maxLength="1" android:textSize="24sp" android:textStyle="bold"
+            android:textColor="@color/texto_primario" android:layout_marginEnd="8dp"/>
+
+        <EditText android:id="@+id/etCodigo6"
+            android:layout_width="52dp" android:layout_height="64dp"
+            android:background="@drawable/bg_codigo_box"
+            android:gravity="center" android:inputType="number"
+            android:maxLength="1" android:textSize="24sp" android:textStyle="bold"
+            android:textColor="@color/texto_primario"/>
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressVerificacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:visibility="gone"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Reenviar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/txtCuentaRegresiva"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/gris_texto"
+            android:layout_marginEnd="8dp"/>
+
+        <TextView
+            android:id="@+id/btnReenviar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reenviar codigo"
+            android:textSize="14sp"
+            android:textColor="@color/acento"
+            android:textStyle="bold"
+            android:clickable="true"
+            android:focusable="true"
+            android:enabled="false"/>
+    </LinearLayout>
+
+</LinearLayout>

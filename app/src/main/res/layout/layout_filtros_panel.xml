@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Panel de filtros que se despliega desde arriba -->
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/panelFiltros"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="0dp"
+    app:cardElevation="8dp"
+    app:cardBackgroundColor="@color/blanco"
+    android:visibility="gone">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Título del panel -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Filtrar productos"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/texto_primario"/>
+
+            <TextView
+                android:id="@+id/btnLimpiarFiltros"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Limpiar"
+                android:textSize="13sp"
+                android:textColor="@color/verde_teal"
+                android:clickable="true"
+                android:focusable="true"/>
+        </LinearLayout>
+
+        <!-- SECCIÓN: Categoría -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Categoria"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:textColor="@color/texto_primario"
+            android:layout_marginBottom="10dp"/>
+
+        <!-- Chips de categoría fila 1 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="6dp">
+
+            <TextView android:id="@+id/chipTodos"
+                android:layout_width="wrap_content" android:layout_height="36dp"
+                android:text="Todos" android:gravity="center"
+                android:paddingStart="16dp" android:paddingEnd="16dp"
+                android:layout_marginEnd="8dp" android:textSize="13sp"
+                android:background="@drawable/bg_categoria_seleccionada"
+                android:textColor="@color/blanco" android:clickable="true" android:focusable="true"/>
+
+            <TextView android:id="@+id/chipLibros"
+                android:layout_width="wrap_content" android:layout_height="36dp"
+                android:text="Libros" android:gravity="center"
+                android:paddingStart="16dp" android:paddingEnd="16dp"
+                android:layout_marginEnd="8dp" android:textSize="13sp"
+                android:background="@drawable/bg_categoria_normal"
+                android:textColor="@color/texto_secundario" android:clickable="true" android:focusable="true"/>
+
+            <TextView android:id="@+id/chipElectronica"
+                android:layout_width="wrap_content" android:layout_height="36dp"
+                android:text="Electronica" android:gravity="center"
+                android:paddingStart="16dp" android:paddingEnd="16dp"
+                android:layout_marginEnd="8dp" android:textSize="13sp"
+                android:background="@drawable/bg_categoria_normal"
+                android:textColor="@color/texto_secundario" android:clickable="true" android:focusable="true"/>
+        </LinearLayout>
+
+        <!-- Chips de categoría fila 2 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <TextView android:id="@+id/chipRopa"
+                android:layout_width="wrap_content" android:layout_height="36dp"
+                android:text="Ropa" android:gravity="center"
+                android:paddingStart="16dp" android:paddingEnd="16dp"
+                android:layout_marginEnd="8dp" android:textSize="13sp"
+                android:background="@drawable/bg_categoria_normal"
+                android:textColor="@color/texto_secundario" android:clickable="true" android:focusable="true"/>
+
+            <TextView android:id="@+id/chipDeporte"
+                android:layout_width="wrap_content" android:layout_height="36dp"
+                android:text="Deporte" android:gravity="center"
+                android:paddingStart="16dp" android:paddingEnd="16dp"
+                android:layout_marginEnd="8dp" android:textSize="13sp"
+                android:background="@drawable/bg_categoria_normal"
+                android:textColor="@color/texto_secundario" android:clickable="true" android:focusable="true"/>
+
+            <TextView android:id="@+id/chipOtros"
+                android:layout_width="wrap_content" android:layout_height="36dp"
+                android:text="Otros" android:gravity="center"
+                android:paddingStart="16dp" android:paddingEnd="16dp"
+                android:textSize="13sp"
+                android:background="@drawable/bg_categoria_normal"
+                android:textColor="@color/texto_secundario" android:clickable="true" android:focusable="true"/>
+        </LinearLayout>
+
+        <!-- SECCIÓN: Precio -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rango de precio ($)"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:textColor="@color/texto_primario"
+            android:layout_marginBottom="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_input"
+                android:gravity="center_vertical"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:layout_marginEnd="8dp">
+                <EditText
+                    android:id="@+id/etPrecioMin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="Min"
+                    android:inputType="numberDecimal"
+                    android:textSize="14sp"
+                    android:textColor="@color/texto_primario"
+                    android:textColorHint="@color/gris_icono"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text=" — "
+                android:textColor="@color/gris_texto"
+                android:layout_marginEnd="8dp"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_input"
+                android:gravity="center_vertical"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp">
+                <EditText
+                    android:id="@+id/etPrecioMax"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="Max"
+                    android:inputType="numberDecimal"
+                    android:textSize="14sp"
+                    android:textColor="@color/texto_primario"
+                    android:textColorHint="@color/gris_icono"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- SECCIÓN: Estado -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Estado del articulo"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:textColor="@color/texto_primario"
+            android:layout_marginBottom="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp">
+
+            <TextView android:id="@+id/chipNuevo"
+                android:layout_width="wrap_content" android:layout_height="36dp"
+                android:text="Nuevo" android:gravity="center"
+                android:paddingStart="16dp" android:paddingEnd="16dp"
+                android:layout_marginEnd="8dp" android:textSize="13sp"
+                android:background="@drawable/bg_categoria_normal"
+                android:textColor="@color/texto_secundario" android:clickable="true" android:focusable="true"/>
+
+            <TextView android:id="@+id/chipComoNuevo"
+                android:layout_width="wrap_content" android:layout_height="36dp"
+                android:text="Como nuevo" android:gravity="center"
+                android:paddingStart="16dp" android:paddingEnd="16dp"
+                android:layout_marginEnd="8dp" android:textSize="13sp"
+                android:background="@drawable/bg_categoria_normal"
+                android:textColor="@color/texto_secundario" android:clickable="true" android:focusable="true"/>
+
+            <TextView android:id="@+id/chipUsado"
+                android:layout_width="wrap_content" android:layout_height="36dp"
+                android:text="Usado" android:gravity="center"
+                android:paddingStart="16dp" android:paddingEnd="16dp"
+                android:textSize="13sp"
+                android:background="@drawable/bg_categoria_normal"
+                android:textColor="@color/texto_secundario" android:clickable="true" android:focusable="true"/>
+        </LinearLayout>
+
+        <!-- Botón aplicar -->
+        <Button
+            android:id="@+id/btnAplicarFiltros"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Aplicar filtros"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/blanco"
+            android:backgroundTint="@color/verde_principal"
+            style="@style/Widget.MaterialComponents.Button"/>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

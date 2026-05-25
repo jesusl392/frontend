@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:paddingTop="48dp"
+    android:paddingBottom="24dp"
+    android:background="@color/primario">
+
+    <!-- Avatar -->
+    <FrameLayout
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_marginBottom="14dp">
+        <ImageView
+            android:id="@+id/imgAvatarDrawer"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:background="@drawable/bg_avatar"
+            android:src="@android:drawable/ic_menu_gallery"
+            android:scaleType="centerCrop"/>
+    </FrameLayout>
+
+    <!-- Nombre -->
+    <TextView
+        android:id="@+id/txtDrawerNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Estudiante UniCundi"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        android:textColor="@color/blanco"/>
+
+    <!-- Facultad -->
+    <TextView
+        android:id="@+id/txtDrawerFacultad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ingenieria en Sistemas"
+        android:textSize="13sp"
+        android:textColor="#AADDAA"
+        android:layout_marginTop="4dp"/>
+
+    <!-- Correo -->
+    <TextView
+        android:id="@+id/txtDrawerCorreo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="usuario@ucundinamarca.edu.co"
+        android:textSize="12sp"
+        android:textColor="#AADDAA"
+        android:layout_marginTop="2dp"/>
+
+</LinearLayout>

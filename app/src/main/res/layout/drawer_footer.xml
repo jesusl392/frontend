@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E0E0E0"
+        android:layout_marginTop="4dp"/>
+
+    <!-- Créditos (fila clickeable) -->
+    <LinearLayout
+        android:id="@+id/layoutCreditos"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@android:drawable/ic_menu_info_details"
+            android:layout_marginEnd="32dp"
+            android:contentDescription="Créditos"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Créditos"
+            android:textSize="14sp"
+            android:textColor="@color/texto_primario"/>
+
+        <ImageView
+            android:id="@+id/imgCreditosArrow"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@android:drawable/arrow_down_float"
+            android:contentDescription="Expandir"/>
+
+    </LinearLayout>
+
+    <!-- Panel expandible con los creadores -->
+    <LinearLayout
+        android:id="@+id/panelCreditos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="72dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="12dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Creadores de la aplicación:"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/texto_primario"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="• Jesús Santiago Lozano"
+            android:textSize="12sp"
+            android:textColor="@color/texto_secundario"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="• Ronald Felipe Guayambuco"
+            android:textSize="12sp"
+            android:textColor="@color/texto_secundario"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="• Cristian Andrés Galeano"
+            android:textSize="12sp"
+            android:textColor="@color/texto_secundario"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="• Juan José Gracia"
+            android:textSize="12sp"
+            android:textColor="@color/texto_secundario"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="• Tomas Poveda Trujillo"
+            android:textSize="12sp"
+            android:textColor="@color/texto_secundario"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gestor de conocimiento:"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/texto_primario"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="• William Alexander Matallana"
+            android:textSize="12sp"
+            android:textColor="@color/texto_secundario"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Programa:"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/texto_primario"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ingeniería de Sistemas y Computación"
+            android:textSize="12sp"
+            android:textColor="@color/texto_secundario"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E0E0E0"/>
+
+    <!-- Cerrar Sesión -->
+    <LinearLayout
+        android:id="@+id/layoutCerrarSesion"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:background="?attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_marginBottom="8dp">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@android:drawable/ic_lock_power_off"
+            android:layout_marginEnd="32dp"
+            android:contentDescription="Cerrar sesión"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cerrar Sesión"
+            android:textSize="14sp"
+            android:textColor="#D32F2F"/>
+
+    </LinearLayout>
+
+</LinearLayout>

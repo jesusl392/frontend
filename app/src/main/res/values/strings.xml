@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">UniMarket</string>
+    <string name="universidad">Universidad de Cundinamarca</string>
+    <string name="slogan">Marketplace exclusivo para la comunidad universitaria</string>
+    <string name="correo_hint">ejemplo@ucundinamarca.edu.co</string>
+    <string name="iniciar_sesion">Iniciar Sesion</string>
+    <string name="bienvenido">Bienvenido de nuevo</string>
+    <string name="credenciales_desc">Ingresa tus credenciales institucionales para continuar.</string>
+</resources>

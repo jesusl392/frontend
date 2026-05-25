@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/fondo_gris">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Header -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:background="@color/blanco" android:padding="16dp"
+            android:orientation="horizontal" android:gravity="center_vertical">
+            <ImageButton android:id="@+id/btnVolver" android:layout_width="40dp" android:layout_height="40dp"
+                android:src="@drawable/ic_arrow_back"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Volver" android:layout_marginEnd="12dp"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Publicar Producto" android:textSize="18sp" android:textStyle="bold"
+                android:textColor="@color/texto_primario"/>
+        </LinearLayout>
+
+        <!-- Card formulario -->
+        <androidx.cardview.widget.CardView android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_margin="16dp"
+            app:cardCornerRadius="16dp" app:cardElevation="2dp" app:cardBackgroundColor="@color/blanco">
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="20dp">
+
+                <!-- Foto del producto -->
+                <FrameLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp">
+
+                    <!-- Área para tocar y seleccionar foto (visible cuando no hay foto) -->
+                    <LinearLayout
+                        android:id="@+id/layoutSubirFoto"
+                        android:layout_width="match_parent"
+                        android:layout_height="160dp"
+                        android:background="@drawable/bg_subir_foto"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:clickable="true"
+                        android:focusable="true">
+                        <ImageView android:layout_width="48dp" android:layout_height="48dp"
+                            android:src="@android:drawable/ic_menu_camera"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Tocar para agregar foto"
+                            android:textSize="14sp" android:textStyle="bold"
+                            android:textColor="@color/verde_principal" android:layout_marginTop="10dp"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Desde la galeria de tu celular"
+                            android:textSize="12sp" android:textColor="@color/gris_texto"
+                            android:layout_marginTop="4dp"/>
+                    </LinearLayout>
+
+                    <!-- Imagen seleccionada (visible cuando ya hay foto) -->
+                    <ImageView
+                        android:id="@+id/imgProductoSeleccionada"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:scaleType="centerCrop"
+                        android:visibility="gone"/>
+
+                    <!-- Botón cambiar foto (visible cuando ya hay foto) -->
+                    <Button
+                        android:id="@+id/btnCambiarFoto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:layout_gravity="bottom|end"
+                        android:layout_margin="10dp"
+                        android:text="Cambiar foto"
+                        android:textSize="12sp"
+                        android:textColor="@color/blanco"
+                        android:backgroundTint="#AA000000"
+                        android:visibility="gone"
+                        style="@style/Widget.MaterialComponents.Button"/>
+                </FrameLayout>
+
+                <!-- Título -->
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Titulo del producto" android:textSize="13sp"
+                    android:textColor="@color/texto_primario" android:textStyle="bold" android:layout_marginBottom="6dp"/>
+                <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:layout_marginBottom="16dp"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText android:id="@+id/etTitulo"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:hint="Ej: Calculadora Casio fx-991"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Precio -->
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Precio ($)" android:textSize="13sp"
+                    android:textColor="@color/texto_primario" android:textStyle="bold" android:layout_marginBottom="6dp"/>
+                <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:layout_marginBottom="16dp"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText android:id="@+id/etPrecio"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:hint="0.00" android:inputType="numberDecimal"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Categoría -->
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Categoria" android:textSize="13sp"
+                    android:textColor="@color/texto_primario" android:textStyle="bold" android:layout_marginBottom="6dp"/>
+                <Spinner android:id="@+id/spinnerCategoria" android:layout_width="match_parent"
+                    android:layout_height="52dp" android:background="@drawable/bg_input"
+                    android:layout_marginBottom="4dp"
+                    android:entries="@array/categorias"/>
+                <TextView
+                    android:id="@+id/txtErrorCategoria"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Selecciona una categoría"
+                    android:textColor="#D32F2F"
+                    android:textSize="12sp"
+                    android:visibility="gone"
+                    android:paddingStart="4dp"
+                    android:layout_marginBottom="12dp"/>
+
+                <!-- Estado -->
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Estado del articulo" android:textSize="13sp"
+                    android:textColor="@color/texto_primario" android:textStyle="bold" android:layout_marginBottom="8dp"/>
+                <RadioGroup android:id="@+id/rgEstado" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:orientation="horizontal"
+                    android:layout_marginBottom="16dp">
+                    <RadioButton android:id="@+id/rbNuevo" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="Nuevo"
+                        android:textColor="@color/texto_primario" android:buttonTint="@color/verde_teal"
+                        android:layout_marginEnd="16dp"/>
+                    <RadioButton android:id="@+id/rbComoNuevo" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="Como nuevo"
+                        android:textColor="@color/texto_primario" android:buttonTint="@color/verde_teal"
+                        android:layout_marginEnd="16dp"/>
+                    <RadioButton android:id="@+id/rbUsado" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="Usado"
+                        android:textColor="@color/texto_primario" android:buttonTint="@color/verde_teal"
+                        android:checked="true"/>
+                </RadioGroup>
+
+                <!-- Descripción -->
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Descripcion" android:textSize="13sp"
+                    android:textColor="@color/texto_primario" android:textStyle="bold" android:layout_marginBottom="6dp"/>
+                <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:layout_marginBottom="16dp"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText android:id="@+id/etDescripcion"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:hint="Describe tu articulo..." android:minLines="3"
+                        android:gravity="top" android:inputType="textMultiLine"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Ubicación -->
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Punto de entrega" android:textSize="13sp"
+                    android:textColor="@color/texto_primario" android:textStyle="bold" android:layout_marginBottom="6dp"/>
+                <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:layout_marginBottom="24dp"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText android:id="@+id/etUbicacion"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:hint="Ej: Biblioteca Central - Entrada Norte"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button android:id="@+id/btnPublicar" android:layout_width="match_parent"
+                    android:layout_height="56dp" android:text="Publicar Producto"
+                    android:textSize="16sp" android:textStyle="bold" android:textColor="@color/blanco"
+                    android:backgroundTint="@color/verde_principal"
+                    style="@style/Widget.MaterialComponents.Button"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</ScrollView>

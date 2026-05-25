@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    app:cardCornerRadius="14dp"
+    app:cardElevation="2dp"
+    app:cardBackgroundColor="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="14dp"
+        android:gravity="center_vertical">
+
+        <!-- Imagen -->
+        <ImageView android:id="@+id/imgFavorito"
+            android:layout_width="80dp" android:layout_height="80dp"
+            android:background="#F0F0F0" android:scaleType="centerCrop"
+            android:src="@android:drawable/ic_menu_gallery"
+            android:layout_marginEnd="14dp"/>
+
+        <!-- Info -->
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:orientation="vertical">
+
+            <TextView android:id="@+id/txtTituloFavorito"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="Titulo del producto" android:textSize="14sp"
+                android:textStyle="bold" android:textColor="@color/texto_primario"
+                android:maxLines="2" android:ellipsize="end" android:layout_marginBottom="6dp"/>
+
+            <TextView android:id="@+id/txtPrecioFavorito"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="$0" android:textSize="16sp" android:textStyle="bold"
+                android:textColor="@color/verde_teal" android:layout_marginBottom="4dp"/>
+
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:gravity="center_vertical">
+                <TextView android:id="@+id/txtEstadoFavorito"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Nuevo" android:textSize="11sp"
+                    android:textColor="@color/verde_teal"
+                    android:layout_marginEnd="8dp"/>
+                <TextView android:id="@+id/txtUbicacionFavorito"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Ubicacion" android:textSize="11sp"
+                    android:textColor="@color/gris_icono"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Botón quitar favorito -->
+        <ImageButton android:id="@+id/btnQuitarFavorito"
+            android:layout_width="36dp" android:layout_height="36dp"
+            android:src="@android:drawable/btn_star_big_on"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Quitar de favoritos"
+            android:layout_marginStart="8dp"/>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

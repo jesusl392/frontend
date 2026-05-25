@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.UniMarket" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/primario</item>
+        <item name="colorPrimaryVariant">@color/primario_medio</item>
+        <item name="colorOnPrimary">@color/blanco</item>
+        <item name="colorSecondary">@color/acento</item>
+        <item name="colorOnSecondary">@color/blanco</item>
+        <item name="android:windowBackground">@color/fondo_gris</item>
+        <item name="android:statusBarColor">@color/texto_primario</item>
+    </style>
+
+    <style name="Btn.Primario" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/primario</item>
+        <item name="android:textColor">@color/blanco</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="cornerRadius">12dp</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:paddingBottom">16dp</item>
+    </style>
+
+    <style name="Btn.Outline" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">@color/gris_borde</item>
+        <item name="android:textColor">@color/texto_primario</item>
+        <item name="android:textSize">15sp</item>
+        <item name="cornerRadius">12dp</item>
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingBottom">14dp</item>
+    </style>
+
+    <style name="CardUni">
+        <item name="cardBackgroundColor">@color/blanco</item>
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">1dp</item>
+        <item name="android:layout_marginBottom">12dp</item>
+    </style>
+
+    <style name="DialogoRegistro" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="shapeAppearanceMediumComponent">@style/ShapeDialogoRegistro</item>
+        <item name="buttonBarPositiveButtonStyle">@style/Btn.DialogoPositivoReg</item>
+        <item name="buttonBarNegativeButtonStyle">@style/Btn.DialogoNegativoReg</item>
+    </style>
+
+    <style name="ShapeDialogoRegistro" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">20dp</item>
+    </style>
+
+    <style name="Btn.DialogoPositivoReg" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/verde_principal</item>
+    </style>
+
+    <style name="Btn.DialogoNegativoReg" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/texto_secundario</item>
+    </style>
+</resources>

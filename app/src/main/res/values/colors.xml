@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Paleta UniMarket — colores institucionales Universidad de Cundinamarca -->
+    <!-- Verde institucional: #006B4F | Oro institucional: #F4A51A -->
+    <!-- Estructura basada en innovaFeed (g / gd / gl / off / dk) -->
+
+    <!-- Verde institucional como color principal -->
+    <color name="primario">#00503B</color>
+    <color name="primario_medio">#007A5B</color>
+    <color name="primario_claro">#1DB87A</color>
+
+    <!-- Oro institucional como acento -->
+    <color name="acento">#F4A51A</color>
+    <color name="acento_oscuro">#C8870E</color>
+    <color name="acento_claro">#FEF3D7</color>
+
+    <!-- Fondos (estructura off / gl de innovaFeed) -->
+    <color name="fondo_gris">#F7FAF8</color>
+    <color name="fondo_secundario">#E8F4EF</color>
+    <color name="blanco">#FFFFFF</color>
+    <color name="gris_borde">#C5DDD6</color>
+    <color name="gris_icono">#8AADA0</color>
+    <color name="gris_texto">#4A6357</color>
+
+    <!-- Textos (estructura dk / t2 de innovaFeed) -->
+    <color name="texto_primario">#0D1F17</color>
+    <color name="texto_secundario">#4A6357</color>
+
+    <!-- Badges -->
+    <color name="precio_badge">#F4A51A</color>
+    <color name="precio_badge_texto">#FFFFFF</color>
+    <color name="badge_activo">#006B4F</color>
+    <color name="badge_vendido">#8AADA0</color>
+
+    <color name="error">#D32F2F</color>
+
+    <!-- Alias para compatibilidad con layouts existentes -->
+    <color name="verde_principal">#006B4F</color>
+    <color name="verde_medio">#005540</color>
+    <color name="verde_claro">#E8F4EF</color>
+    <color name="verde_teal">#006B4F</color>
+    <color name="verde_teal_claro">#E8F4EF</color>
+    <color name="verde_superficie">#F7FAF8</color>
+</resources>

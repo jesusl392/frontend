@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fondo_gris">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Header -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:background="@color/blanco" android:padding="16dp"
+            android:gravity="center_vertical" android:orientation="horizontal">
+            <ImageButton android:id="@+id/btnVolver"
+                android:layout_width="40dp" android:layout_height="40dp"
+                android:src="@drawable/ic_arrow_back"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Volver" android:layout_marginEnd="12dp"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Ayuda y Soporte" android:textSize="20sp"
+                android:textStyle="bold" android:textColor="@color/texto_primario"/>
+        </LinearLayout>
+
+        <!-- ─── SECCIÓN FAQ ─── -->
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Preguntas frecuentes"
+            android:textSize="16sp" android:textStyle="bold"
+            android:textColor="@color/texto_primario"
+            android:layout_marginStart="16dp" android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"/>
+
+        <!-- FAQ 1 -->
+        <androidx.cardview.widget.CardView android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp" android:layout_marginBottom="8dp"
+            app:cardCornerRadius="12dp" app:cardElevation="1dp" app:cardBackgroundColor="@color/blanco">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="16dp">
+                <LinearLayout android:id="@+id/faqHeader1" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:orientation="horizontal"
+                    android:gravity="center_vertical" android:clickable="true" android:focusable="true">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:textSize="14sp" android:textStyle="bold"
+                        android:textColor="@color/texto_primario"
+                        android:text="Como publico un articulo?"/>
+                    <ImageView android:id="@+id/faqArrow1" android:layout_width="20dp"
+                        android:layout_height="20dp" android:src="@android:drawable/arrow_down_float"/>
+                </LinearLayout>
+                <TextView android:id="@+id/faqRespuesta1" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:layout_marginTop="10dp"
+                    android:textSize="13sp" android:textColor="@color/texto_secundario"
+                    android:lineSpacingMultiplier="1.5" android:visibility="gone"
+                    android:text="Toca el boton verde + en la barra inferior. Completa el formulario con titulo, precio, categoria, estado y descripcion de tu articulo. Puedes agregar una foto para que sea mas atractivo."/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- FAQ 2 -->
+        <androidx.cardview.widget.CardView android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp" android:layout_marginBottom="8dp"
+            app:cardCornerRadius="12dp" app:cardElevation="1dp" app:cardBackgroundColor="@color/blanco">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="16dp">
+                <LinearLayout android:id="@+id/faqHeader2" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:orientation="horizontal"
+                    android:gravity="center_vertical" android:clickable="true" android:focusable="true">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:textSize="14sp" android:textStyle="bold"
+                        android:textColor="@color/texto_primario"
+                        android:text="Como contacto a un vendedor?"/>
+                    <ImageView android:id="@+id/faqArrow2" android:layout_width="20dp"
+                        android:layout_height="20dp" android:src="@android:drawable/arrow_down_float"/>
+                </LinearLayout>
+                <TextView android:id="@+id/faqRespuesta2" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:layout_marginTop="10dp"
+                    android:textSize="13sp" android:textColor="@color/texto_secundario"
+                    android:lineSpacingMultiplier="1.5" android:visibility="gone"
+                    android:text="Entra al detalle del producto y toca el boton Contactar Vendedor. Se abrira un chat directo con el vendedor dentro de la app."/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- FAQ 3 -->
+        <androidx.cardview.widget.CardView android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp" android:layout_marginBottom="8dp"
+            app:cardCornerRadius="12dp" app:cardElevation="1dp" app:cardBackgroundColor="@color/blanco">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="16dp">
+                <LinearLayout android:id="@+id/faqHeader3" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:orientation="horizontal"
+                    android:gravity="center_vertical" android:clickable="true" android:focusable="true">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:textSize="14sp" android:textStyle="bold"
+                        android:textColor="@color/texto_primario"
+                        android:text="La app es solo para estudiantes?"/>
+                    <ImageView android:id="@+id/faqArrow3" android:layout_width="20dp"
+                        android:layout_height="20dp" android:src="@android:drawable/arrow_down_float"/>
+                </LinearLayout>
+                <TextView android:id="@+id/faqRespuesta3" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:layout_marginTop="10dp"
+                    android:textSize="13sp" android:textColor="@color/texto_secundario"
+                    android:lineSpacingMultiplier="1.5" android:visibility="gone"
+                    android:text="Si. UniMarket es exclusivo para la comunidad de la Universidad de Cundinamarca. Necesitas un correo institucional @ucundinamarca.edu.co para registrarte."/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- FAQ 4 -->
+        <androidx.cardview.widget.CardView android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp" android:layout_marginBottom="16dp"
+            app:cardCornerRadius="12dp" app:cardElevation="1dp" app:cardBackgroundColor="@color/blanco">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="16dp">
+                <LinearLayout android:id="@+id/faqHeader4" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:orientation="horizontal"
+                    android:gravity="center_vertical" android:clickable="true" android:focusable="true">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:textSize="14sp" android:textStyle="bold"
+                        android:textColor="@color/texto_primario"
+                        android:text="Como elimino una publicacion?"/>
+                    <ImageView android:id="@+id/faqArrow4" android:layout_width="20dp"
+                        android:layout_height="20dp" android:src="@android:drawable/arrow_down_float"/>
+                </LinearLayout>
+                <TextView android:id="@+id/faqRespuesta4" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:layout_marginTop="10dp"
+                    android:textSize="13sp" android:textColor="@color/texto_secundario"
+                    android:lineSpacingMultiplier="1.5" android:visibility="gone"
+                    android:text="Ve a Mis Publicaciones desde el menu lateral. Toca el icono de eliminar en el articulo que deseas borrar y confirma la accion."/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- ─── SECCIÓN CONTACTO ─── -->
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Enviar mensaje al soporte"
+            android:textSize="16sp" android:textStyle="bold"
+            android:textColor="@color/texto_primario"
+            android:layout_marginStart="16dp" android:layout_marginBottom="10dp"/>
+
+        <androidx.cardview.widget.CardView android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp" android:layout_marginBottom="20dp"
+            app:cardCornerRadius="12dp" app:cardElevation="2dp" app:cardBackgroundColor="@color/blanco">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="16dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etAsunto" android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:hint="Asunto"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etMensajeSoporte" android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:hint="Describe tu problema o consulta..."
+                        android:minLines="4" android:gravity="top" android:inputType="textMultiLine"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button android:id="@+id/btnEnviarMensaje"
+                    android:layout_width="match_parent" android:layout_height="50dp"
+                    android:text="Enviar mensaje"
+                    android:textSize="15sp" android:textStyle="bold" android:textColor="@color/blanco"
+                    android:backgroundTint="@color/verde_principal"
+                    style="@style/Widget.MaterialComponents.Button"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- ─── SECCIÓN INFO UNIVERSIDAD ─── -->
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Contacto institucional"
+            android:textSize="16sp" android:textStyle="bold"
+            android:textColor="@color/texto_primario"
+            android:layout_marginStart="16dp" android:layout_marginBottom="10dp"/>
+
+        <androidx.cardview.widget.CardView android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp" android:layout_marginBottom="32dp"
+            app:cardCornerRadius="12dp" app:cardElevation="2dp" app:cardBackgroundColor="@color/blanco">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="16dp">
+
+                <!-- Nombre universidad -->
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Universidad de Cundinamarca"
+                    android:textSize="15sp" android:textStyle="bold"
+                    android:textColor="@color/verde_principal" android:layout_marginBottom="16dp"/>
+
+                <!-- Correo -->
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical"
+                    android:layout_marginBottom="12dp">
+                    <ImageView android:layout_width="20dp" android:layout_height="20dp"
+                        android:src="@android:drawable/ic_dialog_email"
+                        android:layout_marginEnd="12dp"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="soporte@ucundinamarca.edu.co"
+                        android:textSize="13sp" android:textColor="@color/texto_secundario"/>
+                </LinearLayout>
+
+                <!-- Teléfono -->
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical"
+                    android:layout_marginBottom="12dp">
+                    <ImageView android:layout_width="20dp" android:layout_height="20dp"
+                        android:src="@android:drawable/ic_menu_call"
+                        android:layout_marginEnd="12dp"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="+57 (1) 828 4700"
+                        android:textSize="13sp" android:textColor="@color/texto_secundario"/>
+                </LinearLayout>
+
+                <!-- Sitio web -->
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical"
+                    android:layout_marginBottom="16dp">
+                    <ImageView android:layout_width="20dp" android:layout_height="20dp"
+                        android:src="@android:drawable/ic_menu_myplaces"
+                        android:layout_marginEnd="12dp"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="www.ucundinamarca.edu.co"
+                        android:textSize="13sp" android:textColor="@color/verde_teal"/>
+                </LinearLayout>
+
+                <!-- Separador -->
+                <View android:layout_width="match_parent" android:layout_height="1dp"
+                    android:background="@color/gris_borde" android:layout_marginBottom="14dp"/>
+
+                <!-- Redes sociales -->
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Redes sociales"
+                    android:textSize="13sp" android:textStyle="bold"
+                    android:textColor="@color/texto_primario" android:layout_marginBottom="10dp"/>
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button android:id="@+id/btnFacebook"
+                        android:layout_width="0dp" android:layout_height="40dp"
+                        android:layout_weight="1" android:layout_marginEnd="6dp"
+                        android:text="Facebook" android:textSize="12sp"
+                        android:backgroundTint="#1877F2"
+                        style="@style/Widget.MaterialComponents.Button"/>
+
+                    <Button android:id="@+id/btnInstagram"
+                        android:layout_width="0dp" android:layout_height="40dp"
+                        android:layout_weight="1" android:layout_marginEnd="6dp"
+                        android:text="Instagram" android:textSize="12sp"
+                        android:backgroundTint="#E1306C"
+                        style="@style/Widget.MaterialComponents.Button"/>
+
+                    <Button android:id="@+id/btnYoutube"
+                        android:layout_width="0dp" android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:text="YouTube" android:textSize="12sp"
+                        android:backgroundTint="#FF0000"
+                        style="@style/Widget.MaterialComponents.Button"/>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

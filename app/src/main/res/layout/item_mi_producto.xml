@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    app:cardCornerRadius="14dp"
+    app:cardElevation="2dp"
+    app:cardBackgroundColor="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="14dp"
+        android:gravity="center_vertical">
+
+        <!-- Imagen -->
+        <FrameLayout android:layout_width="80dp" android:layout_height="80dp"
+            android:layout_marginEnd="14dp">
+            <ImageView android:id="@+id/imgMiProducto"
+                android:layout_width="80dp" android:layout_height="80dp"
+                android:background="#F0F0F0" android:scaleType="centerCrop"
+                android:src="@android:drawable/ic_menu_gallery"/>
+            <!-- Badge estado -->
+            <TextView android:id="@+id/txtEstadoItem"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_gravity="top|start"
+                android:text="Activo" android:textSize="9sp" android:textColor="#FFFFFF"
+                android:paddingStart="5dp" android:paddingEnd="5dp"
+                android:paddingTop="2dp" android:paddingBottom="2dp"
+                android:backgroundTint="@color/badge_activo"/>
+        </FrameLayout>
+
+        <!-- Info -->
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:orientation="vertical">
+
+            <TextView android:id="@+id/txtTituloItem"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="Titulo del producto" android:textSize="14sp"
+                android:textStyle="bold" android:textColor="@color/texto_primario"
+                android:maxLines="2" android:ellipsize="end" android:layout_marginBottom="4dp"/>
+
+            <TextView android:id="@+id/txtPrecioItem"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="$0" android:textSize="15sp" android:textStyle="bold"
+                android:textColor="@color/verde_teal" android:layout_marginBottom="4dp"/>
+
+            <TextView android:id="@+id/txtFechaItem"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Publicado hoy" android:textSize="11sp"
+                android:textColor="@color/gris_icono"/>
+        </LinearLayout>
+
+        <!-- Botón vendido -->
+        <ImageButton android:id="@+id/btnVendidoProducto"
+            android:layout_width="36dp" android:layout_height="36dp"
+            android:src="@android:drawable/checkbox_on_background"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Vendido"
+            android:layout_marginStart="8dp"/>
+
+        <!-- Botón eliminar -->
+        <ImageButton android:id="@+id/btnEliminarProducto"
+            android:layout_width="36dp" android:layout_height="36dp"
+            android:src="@android:drawable/ic_menu_delete"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Eliminar"
+            android:layout_marginStart="4dp"/>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

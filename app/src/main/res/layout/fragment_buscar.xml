@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:background="@color/fondo_gris">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:background="@color/blanco" android:padding="16dp" android:orientation="vertical">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Buscar" android:textSize="20sp" android:textStyle="bold"
+            android:textColor="@color/texto_primario" android:layout_marginBottom="12dp"/>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="50dp"
+            android:background="@drawable/bg_busqueda" android:gravity="center_vertical"
+            android:paddingStart="16dp" android:paddingEnd="16dp">
+            <EditText android:id="@+id/etBuscarPrincipal" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:background="@null"
+                android:hint="Buscar productos..." android:textSize="14sp"
+                android:textColor="@color/texto_primario" android:textColorHint="@color/gris_icono"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView android:id="@+id/txtResultados" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:text="Todos los productos"
+        android:textSize="13sp" android:textColor="@color/texto_secundario"
+        android:layout_margin="16dp"/>
+
+    <ProgressBar android:id="@+id/progressBuscar" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:layout_gravity="center_horizontal" android:visibility="gone"/>
+
+    <androidx.recyclerview.widget.RecyclerView android:id="@+id/recyclerResultados"
+        android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"
+        android:paddingStart="16dp" android:paddingEnd="16dp" android:paddingBottom="80dp" android:clipToPadding="false"/>
+</LinearLayout>

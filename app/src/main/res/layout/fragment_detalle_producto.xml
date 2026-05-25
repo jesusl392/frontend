@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blanco">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="80dp">
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Imagen + botón volver -->
+            <FrameLayout android:layout_width="match_parent" android:layout_height="260dp"
+                android:background="@color/fondo_gris">
+
+                <ImageView android:id="@+id/imgDetalleProducto"
+                    android:layout_width="match_parent" android:layout_height="match_parent"
+                    android:scaleType="centerCrop" android:src="@android:drawable/ic_menu_gallery"/>
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:padding="16dp" android:gravity="center_vertical">
+
+                    <ImageButton android:id="@+id/btnVolver" android:layout_width="40dp" android:layout_height="40dp"
+                        android:src="@drawable/ic_arrow_back"
+                        android:background="@drawable/bg_btn_volver"
+                        android:contentDescription="Volver"/>
+
+
+                </LinearLayout>
+
+                <!-- Badges categoría y estado -->
+                <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:layout_gravity="bottom|start"
+                    android:layout_margin="16dp">
+
+                    <TextView android:id="@+id/txtCategoria" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="Categoria"
+                        android:textSize="12sp" android:textColor="@color/texto_primario"
+                        android:background="@drawable/bg_badge_blanco"
+                        android:paddingStart="10dp" android:paddingEnd="10dp"
+                        android:paddingTop="4dp" android:paddingBottom="4dp"
+                        android:layout_marginEnd="8dp"/>
+
+                    <TextView android:id="@+id/txtEstado" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="Estado"
+                        android:textSize="12sp" android:textColor="@color/texto_primario"
+                        android:background="@drawable/bg_badge_blanco"
+                        android:paddingStart="10dp" android:paddingEnd="10dp"
+                        android:paddingTop="4dp" android:paddingBottom="4dp"/>
+                </LinearLayout>
+            </FrameLayout>
+
+            <ProgressBar android:id="@+id/progressDetalle" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
+                android:visibility="gone"/>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="20dp">
+
+                <!-- Título y precio -->
+                <TextView android:id="@+id/txtTitulo" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:text="Titulo del producto"
+                    android:textSize="22sp" android:textStyle="bold"
+                    android:textColor="@color/texto_primario" android:layout_marginBottom="8dp"/>
+
+                <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical"
+                    android:layout_marginBottom="16dp">
+
+                    <TextView android:id="@+id/txtPrecio" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="$0.00"
+                        android:textSize="24sp" android:textStyle="bold"
+                        android:textColor="@color/verde_teal" android:layout_marginEnd="10dp"/>
+
+                    <TextView android:id="@+id/txtPrecioOriginal" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text=""
+                        android:textSize="15sp" android:textColor="@color/gris_icono"/>
+                </LinearLayout>
+
+                <!-- Vendedor -->
+                <androidx.cardview.widget.CardView android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:layout_marginBottom="20dp"
+                    app:cardCornerRadius="12dp" app:cardElevation="1dp"
+                    app:cardBackgroundColor="@color/fondo_gris">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="horizontal" android:gravity="center_vertical"
+                        android:padding="14dp">
+                        <ImageView android:id="@+id/imgAvatarVendedor"
+                            android:layout_width="44dp" android:layout_height="44dp"
+                            android:background="@drawable/bg_avatar_small"
+                            android:src="@android:drawable/ic_menu_gallery"
+                            android:layout_marginEnd="12dp"/>
+                        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1" android:orientation="vertical">
+                            <TextView android:id="@+id/txtVendedorNombre" android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:text="Nombre Vendedor"
+                                android:textSize="14sp" android:textStyle="bold"
+                                android:textColor="@color/texto_primario"/>
+                            <TextView android:id="@+id/txtVendedorFacultad" android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:text="Facultad"
+                                android:textSize="12sp" android:textColor="@color/gris_texto"/>
+                            <TextView android:id="@+id/txtVendedorCalificacion" android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:text="4.9"
+                                android:textSize="12sp" android:textColor="@color/verde_teal"/>
+                        </LinearLayout>
+                        <TextView android:id="@+id/txtVerificado" android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" android:text="Verificado"
+                            android:textSize="11sp" android:textColor="@color/verde_teal"
+                            android:background="@drawable/bg_verificado"
+                            android:paddingStart="8dp" android:paddingEnd="8dp"
+                            android:paddingTop="3dp" android:paddingBottom="3dp"
+                            android:visibility="gone"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Descripción -->
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Descripcion" android:textSize="16sp" android:textStyle="bold"
+                    android:textColor="@color/texto_primario" android:layout_marginBottom="8dp"/>
+
+                <TextView android:id="@+id/txtDescripcion" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:text="Descripcion del producto..."
+                    android:textSize="14sp" android:textColor="@color/texto_secundario"
+                    android:lineSpacingMultiplier="1.5" android:layout_marginBottom="20dp"/>
+
+                <!-- Punto de entrega -->
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Punto de entrega" android:textSize="16sp" android:textStyle="bold"
+                    android:textColor="@color/texto_primario" android:layout_marginBottom="8dp"/>
+
+                <TextView android:id="@+id/txtUbicacion" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:text="Ubicacion"
+                    android:textSize="14sp" android:textColor="@color/gris_texto"/>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Botones fijos abajo -->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_gravity="bottom" android:orientation="horizontal"
+        android:padding="16dp" android:background="@color/blanco"
+        app:layout_dodgeInsetEdges="bottom">
+
+        <ImageButton
+            android:id="@+id/btnFavorito"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_marginEnd="12dp"
+            android:src="@drawable/ic_star_outline"
+            android:background="@drawable/bg_btn_outline"
+            android:padding="12dp"
+            android:contentDescription="Agregar a favoritos"/>
+
+        <Button
+            android:id="@+id/btnContactarVendedor"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_weight="1"
+            android:text="Contactar Vendedor"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/blanco"
+            android:backgroundTint="@color/verde_teal"
+            style="@style/Widget.MaterialComponents.Button"/>
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

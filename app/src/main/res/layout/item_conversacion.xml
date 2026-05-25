@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:orientation="horizontal" android:padding="16dp"
+    android:background="@android:color/white" android:gravity="center_vertical">
+    <FrameLayout android:layout_width="50dp" android:layout_height="50dp" android:layout_marginEnd="12dp">
+        <ImageView android:id="@+id/imgAvatarConversacion"
+            android:layout_width="50dp" android:layout_height="50dp"
+            android:background="#E8F5E9" android:src="@android:drawable/ic_menu_gallery"/>
+        <View android:id="@+id/indicadorNoLeido" android:layout_width="10dp" android:layout_height="10dp"
+            android:layout_gravity="top|end" android:background="#00897B" android:visibility="gone"/>
+    </FrameLayout>
+    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+        android:layout_weight="1" android:orientation="vertical">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:gravity="center_vertical">
+            <TextView android:id="@+id/txtNombreChat" android:layout_width="0dp"
+                android:layout_height="wrap_content" android:layout_weight="1"
+                android:text="Nombre" android:textSize="15sp" android:textColor="#1A1A2E"/>
+            <TextView android:id="@+id/txtHoraChat" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:text="12:00"
+                android:textSize="11sp" android:textColor="#9E9E9E"/>
+        </LinearLayout>
+        <TextView android:id="@+id/txtProductoChat" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:text="Producto"
+            android:textSize="11sp" android:textColor="#00897B"/>
+        <TextView android:id="@+id/txtUltimoMensaje" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="Ultimo mensaje..."
+            android:textSize="13sp" android:textColor="#757575" android:maxLines="1" android:ellipsize="end"/>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:background="@color/fondo_gris">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:background="@color/blanco" android:padding="16dp">
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="Mensajes" android:textSize="20sp" android:textStyle="bold"
+            android:textColor="@color/texto_primario"/>
+    </LinearLayout>
+
+    <ProgressBar android:id="@+id/progressMensajes" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
+        android:layout_marginTop="24dp" android:visibility="gone"/>
+
+    <LinearLayout android:id="@+id/layoutVacio" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:orientation="vertical"
+        android:gravity="center" android:padding="48dp" android:visibility="gone">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Sin mensajes aun" android:textSize="16sp"
+            android:textColor="@color/texto_secundario" android:gravity="center"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Cuando contactes a un vendedor, los mensajes apareceran aqui"
+            android:textSize="13sp" android:textColor="@color/gris_icono"
+            android:gravity="center" android:layout_marginTop="8dp"/>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView android:id="@+id/recyclerMensajes"
+        android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"
+        android:paddingBottom="80dp" android:clipToPadding="false"/>
+</LinearLayout>
