@@ -297,6 +297,7 @@ class PerfilFragment : Fragment() {
     private val binding get() = _binding!!
     private val viewModel: PerfilViewModel by viewModels()
     private lateinit var adapterPublicaciones: MisPublicacionesAdapter
+    private lateinit var adapterResenas: ResenaAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentPerfilBinding.inflate(inflater, container, false)
@@ -313,6 +314,10 @@ class PerfilFragment : Fragment() {
         binding.recyclerMisPublicaciones.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         binding.recyclerMisPublicaciones.adapter = adapterPublicaciones
+
+        adapterResenas = ResenaAdapter()
+        binding.recyclerResenas.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerResenas.adapter = adapterResenas
 
         binding.btnVolverInicio.setOnClickListener {
             findNavController().navigate(R.id.homeFragment)
@@ -332,9 +337,7 @@ class PerfilFragment : Fragment() {
                 binding.txtNombre.text = u.nombre
                 binding.txtFacultad.text = u.correo
                 binding.txtVentas.text = "0"
-                binding.txtCalificacion.text = "—"
                 binding.txtFavoritos.text = "0"
-                // Cargar foto de perfil si existe
                 val fotoPerfil = u.fotoPerfil
                 if (!fotoPerfil.isNullOrBlank()) {
                     Glide.with(binding.imgAvatarPerfil.context)
@@ -350,14 +353,40 @@ class PerfilFragment : Fragment() {
             if (estado is UiState.Success) adapterPublicaciones.submitList(estado.data)
         }
 
+        viewModel.ratingsRecibidos.observe(viewLifecycleOwner) { estado ->
+            if (estado is UiState.Success) {
+                val lista = estado.data
+                if (lista.isEmpty()) {
+                    binding.tvResenaVacio.visibility = View.VISIBLE
+                    binding.recyclerResenas.visibility = View.GONE
+                    binding.tvPromedioEstrellas.text = "—"
+                    binding.txtCalificacion.text = "—"
+                    binding.ratingBarPerfil.rating = 0f
+                    binding.tvTotalResenas.text = "Sin reseñas aún"
+                } else {
+                    binding.tvResenaVacio.visibility = View.GONE
+                    binding.recyclerResenas.visibility = View.VISIBLE
+                    val promedio = lista.map { it.puntuacion }.average()
+                    val str = String.format("%.1f", promedio)
+                    binding.tvPromedioEstrellas.text = str
+                    binding.txtCalificacion.text = str
+                    binding.ratingBarPerfil.rating = promedio.toFloat()
+                    binding.tvTotalResenas.text = "${lista.size} reseña${if (lista.size != 1) "s" else ""}"
+                    adapterResenas.submitList(lista.sortedByDescending { it.id })
+                }
+            }
+        }
+
         viewModel.cargarPerfil()
         viewModel.cargarMisPublicaciones()
+        viewModel.cargarRatingsRecibidos()
     }
 
     override fun onResume() {
         super.onResume()
         viewModel.cargarPerfil()
         viewModel.cargarMisPublicaciones()
+        viewModel.cargarRatingsRecibidos()
     }
 
     override fun onDestroyView() { super.onDestroyView(); _binding = null }
@@ -459,7 +488,9 @@ class DetalleProductoFragment : Fragment() {
     private var _binding: FragmentDetalleProductoBinding? = null
     private val binding get() = _binding!!
     private val viewModel: ProductoViewModel by viewModels()
+    private val perfilViewModel: PerfilViewModel by viewModels()
     private var esFavorito = false
+    private var vendedorId = 0L
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentDetalleProductoBinding.inflate(inflater, container, false)
@@ -492,12 +523,17 @@ class DetalleProductoFragment : Fragment() {
             Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
         }
 
+        // Botón calificar vendedor
+        binding.btnCalificarVendedor.setOnClickListener { mostrarDialogoCalificar() }
+
         viewModel.productoDetalle.observe(viewLifecycleOwner) { estado ->
             when (estado) {
                 is UiState.Loading -> binding.progressDetalle.visibility = View.VISIBLE
                 is UiState.Success -> {
                     binding.progressDetalle.visibility = View.GONE
                     val p = estado.data
+                    vendedorId = p.usuarioId
+
                     binding.txtTitulo.text = p.titulo
                     binding.txtPrecio.text = "$${String.format("%.0f", p.precio)}"
                     binding.txtDescripcion.text = p.descripcion
@@ -506,23 +542,21 @@ class DetalleProductoFragment : Fragment() {
                     binding.txtUbicacion.text = p.ubicacion?.ifBlank { null } ?: "Universidad de Cundinamarca"
                     binding.txtVendedorNombre.text = p.usuarioNombre
                     binding.txtVendedorFacultad.text = "Estudiante UniCundi"
-                    binding.txtVendedorCalificacion.text = "—"
 
-                    // Cargar foto del vendedor
+                    // Mostrar botón calificar solo si no es mi propio producto
+                    binding.btnCalificarVendedor.visibility =
+                        if (p.usuarioId != Sesion.usuarioId && Sesion.usuarioId != 0L)
+                            View.VISIBLE else View.GONE
+
                     if (!p.usuarioFoto.isNullOrBlank()) {
-                        Glide.with(this)
-                            .load(p.usuarioFoto)
-                            .circleCrop()
+                        Glide.with(this).load(p.usuarioFoto).circleCrop()
                             .placeholder(android.R.drawable.ic_menu_gallery)
                             .into(binding.imgAvatarVendedor)
                     }
 
-                    // Cargar primera imagen del producto
                     val urlImagen = p.imagenes?.firstOrNull()?.url
                     if (!urlImagen.isNullOrBlank()) {
-                        Glide.with(this)
-                            .load(urlImagen)
-                            .centerCrop()
+                        Glide.with(this).load(urlImagen).centerCrop()
                             .placeholder(android.R.drawable.ic_menu_gallery)
                             .into(binding.imgDetalleProducto)
                     }
@@ -537,6 +571,17 @@ class DetalleProductoFragment : Fragment() {
                         }
                         findNavController().navigate(R.id.action_detalle_to_chat, bundle)
                     }
+
+                    // Click en avatar/nombre del vendedor → perfil público
+                    val irAPerfil = View.OnClickListener {
+                        val bundle = Bundle().apply { putLong("userId", vendedorId) }
+                        findNavController().navigate(R.id.action_detalle_to_perfilPublico, bundle)
+                    }
+                    binding.imgAvatarVendedor.setOnClickListener(irAPerfil)
+                    binding.txtVendedorNombre.setOnClickListener(irAPerfil)
+
+                    // Cargar calificación del vendedor
+                    perfilViewModel.cargarRatingsRecibidos(p.usuarioId)
                 }
                 is UiState.Error -> {
                     binding.progressDetalle.visibility = View.GONE
@@ -546,12 +591,182 @@ class DetalleProductoFragment : Fragment() {
             }
         }
 
+        // Mostrar estrellas del vendedor en la card
+        perfilViewModel.ratingsRecibidos.observe(viewLifecycleOwner) { estado ->
+            if (estado is UiState.Success && estado.data.isNotEmpty()) {
+                val promedio = estado.data.map { it.puntuacion }.average()
+                binding.ratingBarVendedor.rating = promedio.toFloat()
+                binding.txtVendedorCalificacion.text = String.format("%.1f", promedio)
+            } else {
+                binding.ratingBarVendedor.rating = 0f
+                binding.txtVendedorCalificacion.text = ""
+            }
+        }
+
+        // Resultado de enviar reseña
+        perfilViewModel.enviarRatingState.observe(viewLifecycleOwner) { estado ->
+            when (estado) {
+                is UiState.Success -> {
+                    Toast.makeText(requireContext(), "¡Reseña enviada!", Toast.LENGTH_SHORT).show()
+                    perfilViewModel.resetEnviarRatingState()
+                    perfilViewModel.cargarRatingsRecibidos(vendedorId)
+                }
+                is UiState.Error -> {
+                    Toast.makeText(requireContext(), estado.message, Toast.LENGTH_LONG).show()
+                    perfilViewModel.resetEnviarRatingState()
+                }
+                else -> {}
+            }
+        }
+
         viewModel.cargarDetalle(productoId)
+    }
+
+    private fun mostrarDialogoCalificar() {
+        val nombre = binding.txtVendedorNombre.text.toString()
+        val dialogView = layoutInflater.inflate(R.layout.dialog_calificar, null)
+        val ratingBar = dialogView.findViewById<android.widget.RatingBar>(R.id.ratingBar)
+        val etComentario = dialogView.findViewById<com.google.android.material.textfield.TextInputEditText>(R.id.etComentario)
+        val tilComentario = dialogView.findViewById<com.google.android.material.textfield.TextInputLayout>(R.id.tilComentario)
+
+        com.google.android.material.dialog.MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Calificar a $nombre")
+            .setMessage("¿Cómo fue tu experiencia?")
+            .setView(dialogView)
+            .setNegativeButton("Cancelar", null)
+            .setPositiveButton("Enviar", null)
+            .show()
+            .also { d ->
+                d.getButton(androidx.appcompat.app.AlertDialog.BUTTON_POSITIVE)?.setOnClickListener {
+                    tilComentario.error = null
+                    val comentario = etComentario.text.toString().trim()
+                    if (comentario.isEmpty()) {
+                        tilComentario.error = "Escribe un comentario"
+                        return@setOnClickListener
+                    }
+                    perfilViewModel.enviarRating(vendedorId, ratingBar.rating.toInt(), comentario)
+                    d.dismiss()
+                }
+            }
     }
 
     private fun actualizarIconoFavorito() {
         val icono = if (esFavorito) R.drawable.ic_star_filled else R.drawable.ic_star_outline
         binding.btnFavorito.setImageResource(icono)
+    }
+
+    override fun onDestroyView() { super.onDestroyView(); _binding = null }
+}
+
+// ─── PERFIL PÚBLICO FRAGMENT ──────────────────────────────────
+class PerfilPublicoFragment : Fragment() {
+
+    private var _binding: FragmentPerfilPublicoBinding? = null
+    private val binding get() = _binding!!
+    private val viewModel: PerfilViewModel by viewModels()
+    private lateinit var adapterPublicaciones: MisPublicacionesAdapter
+    private lateinit var adapterResenas: ResenaAdapter
+    private var usuarioId = 0L
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        _binding = FragmentPerfilPublicoBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        usuarioId = arguments?.getLong("userId") ?: 0L
+
+        binding.btnVolverPerfil.setOnClickListener { findNavController().popBackStack() }
+
+        adapterPublicaciones = MisPublicacionesAdapter { producto ->
+            val bundle = Bundle().apply { putLong("productoId", producto.id) }
+            findNavController().navigate(R.id.action_perfilPublico_to_detalle, bundle)
+        }
+        binding.recyclerPublicacionesPublico.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        binding.recyclerPublicacionesPublico.adapter = adapterPublicaciones
+
+        adapterResenas = ResenaAdapter()
+        binding.recyclerResenasPublico.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerResenasPublico.adapter = adapterResenas
+
+        // Botón contactar (solo si no es mi propio perfil)
+        if (Sesion.usuarioId != 0L && Sesion.usuarioId != usuarioId) {
+            binding.btnContactarPublico.visibility = View.VISIBLE
+            binding.btnContactarPublico.setOnClickListener {
+                val nombre = binding.txtNombrePublico.text.toString()
+                val perfilState = viewModel.perfilPublico.value
+                val fotoUrl = if (perfilState is UiState.Success) perfilState.data.fotoPerfil else null
+                val bundle = Bundle().apply {
+                    putString("nombreVendedor", nombre)
+                    putString("tituloProducto", "")
+                    putLong("receiverId", usuarioId)
+                    putString("fotoVendedor", fotoUrl)
+                }
+                findNavController().navigate(R.id.action_perfilPublico_to_chat, bundle)
+            }
+        }
+
+        viewModel.perfilPublico.observe(viewLifecycleOwner) { estado ->
+            if (estado is UiState.Success) {
+                val u = estado.data
+                binding.txtNombrePublico.text = u.nombre
+                binding.txtCorreoPublico.text = u.correo
+                binding.txtTitlePerfil.text = u.nombre
+                if (!u.fotoPerfil.isNullOrBlank()) {
+                    Glide.with(this).load(u.fotoPerfil).circleCrop()
+                        .placeholder(android.R.drawable.ic_menu_gallery)
+                        .into(binding.imgAvatarPublico)
+                }
+            }
+        }
+
+        viewModel.publicacionesPublicas.observe(viewLifecycleOwner) { estado ->
+            if (estado is UiState.Success) {
+                val lista = estado.data
+                binding.txtPublicacionesPublico.text = lista.size.toString()
+                if (lista.isEmpty()) {
+                    binding.tvPublicacionesVacio.visibility = View.VISIBLE
+                    binding.recyclerPublicacionesPublico.visibility = View.GONE
+                } else {
+                    binding.tvPublicacionesVacio.visibility = View.GONE
+                    binding.recyclerPublicacionesPublico.visibility = View.VISIBLE
+                    adapterPublicaciones.submitList(lista)
+                }
+            }
+        }
+
+        viewModel.ratingsRecibidos.observe(viewLifecycleOwner) { estado ->
+            if (estado is UiState.Success) {
+                val lista = estado.data
+                if (lista.isEmpty()) {
+                    binding.tvResenaVacioPublico.visibility = View.VISIBLE
+                    binding.recyclerResenasPublico.visibility = View.GONE
+                    binding.tvPromedioPublico.text = "—"
+                    binding.txtCalificacionPublico.text = "—"
+                    binding.ratingBarPublico.rating = 0f
+                    binding.tvTotalResenasPublico.text = "Sin reseñas aún"
+                } else {
+                    binding.tvResenaVacioPublico.visibility = View.GONE
+                    binding.recyclerResenasPublico.visibility = View.VISIBLE
+                    val promedio = lista.map { it.puntuacion }.average()
+                    val str = String.format("%.1f", promedio)
+                    binding.tvPromedioPublico.text = str
+                    binding.txtCalificacionPublico.text = str
+                    binding.ratingBarPublico.rating = promedio.toFloat()
+                    binding.tvTotalResenasPublico.text = "${lista.size} reseña${if (lista.size != 1) "s" else ""}"
+                    adapterResenas.submitList(lista.sortedByDescending { it.id })
+                }
+            }
+        }
+
+        if (usuarioId > 0L) {
+            viewModel.cargarPerfilPublico(usuarioId)
+            viewModel.cargarPublicacionesDeUsuario(usuarioId)
+            viewModel.cargarRatingsRecibidos(usuarioId)
+        }
     }
 
     override fun onDestroyView() { super.onDestroyView(); _binding = null }

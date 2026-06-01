@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="12dp"
+    android:paddingBottom="12dp"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp">
+
+    <!-- Fila superior: nombre + fecha -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="4dp">
+
+        <TextView
+            android:id="@+id/tvResenaAutor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Usuario"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:textColor="@color/texto_primario" />
+
+        <TextView
+            android:id="@+id/tvResenaFecha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="01/01/2025"
+            android:textSize="11sp"
+            android:textColor="@color/gris_texto" />
+
+    </LinearLayout>
+
+    <!-- Estrellas (no interactivas) -->
+    <RatingBar
+        android:id="@+id/ratingBarResena"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:stepSize="1"
+        android:rating="5"
+        android:layout_marginBottom="4dp"
+        style="@style/Widget.AppCompat.RatingBar.Small" />
+
+    <!-- Comentario -->
+    <TextView
+        android:id="@+id/tvResenaComentario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Muy buen vendedor..."
+        android:textSize="13sp"
+        android:textColor="@color/texto_secundario"
+        android:lineSpacingMultiplier="1.4" />
+
+    <!-- Separador inferior -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gris_borde"
+        android:layout_marginTop="12dp" />
+
+</LinearLayout>

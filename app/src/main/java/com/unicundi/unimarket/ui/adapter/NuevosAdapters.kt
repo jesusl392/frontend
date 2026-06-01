@@ -6,8 +6,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.unicundi.unimarket.data.model.Producto
+import com.unicundi.unimarket.data.model.Rating
 import com.unicundi.unimarket.databinding.ItemMiProductoBinding
 import com.unicundi.unimarket.databinding.ItemFavoritoBinding
+import com.unicundi.unimarket.databinding.ItemResenaBinding
 
 // ─── MIS PRODUCTOS ADAPTER ────────────────────────────────────
 class MiProductoAdapter(
@@ -102,5 +104,30 @@ class FavoritoAdapter(
     class Diff2 : DiffUtil.ItemCallback<Producto>() {
         override fun areItemsTheSame(o: Producto, n: Producto) = o.id == n.id
         override fun areContentsTheSame(o: Producto, n: Producto) = o == n
+    }
+}
+
+// ─── RESEÑAS ADAPTER ──────────────────────────────────────────
+class ResenaAdapter : ListAdapter<Rating, ResenaAdapter.VH>(DiffResena()) {
+
+    inner class VH(val binding: ItemResenaBinding) : RecyclerView.ViewHolder(binding.root)
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = VH(
+        ItemResenaBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+    )
+
+    override fun onBindViewHolder(holder: VH, position: Int) {
+        val r = getItem(position)
+        with(holder.binding) {
+            tvResenaAutor.text = r.fromNombre.ifBlank { "Anónimo" }
+            tvResenaComentario.text = r.comentario
+            ratingBarResena.rating = r.puntuacion.toFloat()
+            tvResenaFecha.text = r.date?.take(10) ?: ""
+        }
+    }
+
+    class DiffResena : DiffUtil.ItemCallback<Rating>() {
+        override fun areItemsTheSame(o: Rating, n: Rating) = o.id == n.id
+        override fun areContentsTheSame(o: Rating, n: Rating) = o == n
     }
 }

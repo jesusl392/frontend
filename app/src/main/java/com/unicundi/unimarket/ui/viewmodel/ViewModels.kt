@@ -101,7 +101,13 @@ class AuthViewModel : ViewModel() {
                 if (r.isSuccessful) {
                     _registroState.value = UiState.Success(r.body()!!)
                 } else {
-                    _registroState.value = UiState.Error("Error en registro: ${r.code()}")
+                    val errorMsg = try {
+                        val json = org.json.JSONObject(r.errorBody()?.string() ?: "")
+                        json.optString("error", "Error en registro: ${r.code()}")
+                    } catch (e: Exception) {
+                        "Error en registro: ${r.code()}"
+                    }
+                    _registroState.value = UiState.Error(errorMsg)
                 }
             } catch (e: Exception) {
                 _registroState.value = UiState.Error("Sin conexion: ${e.message}")
@@ -405,6 +411,95 @@ class PerfilViewModel(application: Application) : AndroidViewModel(application) 
                 }
             } catch (e: Exception) {
                 _updatePerfilState.value = UiState.Error("Sin conexion: ${e.message}")
+            }
+        }
+    }
+
+    // ── Ratings ───────────────────────────────────────────────────────────────
+
+    private val _ratingsRecibidos = MutableLiveData<UiState<List<com.unicundi.unimarket.data.model.Rating>>>(UiState.Idle)
+    val ratingsRecibidos: LiveData<UiState<List<com.unicundi.unimarket.data.model.Rating>>> = _ratingsRecibidos
+
+    private val _enviarRatingState = MutableLiveData<UiState<Unit>>(UiState.Idle)
+    val enviarRatingState: LiveData<UiState<Unit>> = _enviarRatingState
+
+    fun cargarRatingsRecibidos(userId: Long = Sesion.usuarioId) {
+        if (userId == 0L) { _ratingsRecibidos.value = UiState.Success(emptyList()); return }
+        _ratingsRecibidos.value = UiState.Loading
+        viewModelScope.launch {
+            try {
+                val r = api.getRatings()
+                if (r.isSuccessful) {
+                    val filtrados = (r.body() ?: emptyList()).filter { it.toId == userId }
+                    _ratingsRecibidos.value = UiState.Success(filtrados)
+                } else {
+                    _ratingsRecibidos.value = UiState.Error("Error ${r.code()}")
+                }
+            } catch (e: Exception) {
+                _ratingsRecibidos.value = UiState.Error("Sin conexión")
+            }
+        }
+    }
+
+    fun enviarRating(toId: Long, puntuacion: Int, comentario: String) {
+        if (Sesion.usuarioId == 0L || toId == Sesion.usuarioId) return
+        _enviarRatingState.value = UiState.Loading
+        viewModelScope.launch {
+            try {
+                val r = api.crearRating(
+                    com.unicundi.unimarket.data.model.RatingRequest(
+                        puntuacion = puntuacion,
+                        comentario = comentario,
+                        tipo       = "comprador",
+                        fromId     = Sesion.usuarioId,
+                        toId       = toId
+                    )
+                )
+                _enviarRatingState.value = if (r.isSuccessful) UiState.Success(Unit)
+                else UiState.Error("Error al enviar reseña (${r.code()})")
+            } catch (e: Exception) {
+                _enviarRatingState.value = UiState.Error("Sin conexión")
+            }
+        }
+    }
+
+    fun resetEnviarRatingState() { _enviarRatingState.value = UiState.Idle }
+
+    // ── Perfil Público ───────────────────────────────────────────────────────
+
+    private val _perfilPublico = MutableLiveData<UiState<Usuario>>(UiState.Idle)
+    val perfilPublico: LiveData<UiState<Usuario>> = _perfilPublico
+
+    private val _publicacionesPublicas = MutableLiveData<UiState<List<Producto>>>(UiState.Idle)
+    val publicacionesPublicas: LiveData<UiState<List<Producto>>> = _publicacionesPublicas
+
+    fun cargarPerfilPublico(userId: Long) {
+        _perfilPublico.value = UiState.Loading
+        viewModelScope.launch {
+            try {
+                val r = api.getUsuarioById(userId)
+                _perfilPublico.value = if (r.isSuccessful) UiState.Success(r.body()!!)
+                else UiState.Error("Error ${r.code()}")
+            } catch (e: Exception) {
+                _perfilPublico.value = UiState.Error("Sin conexión")
+            }
+        }
+    }
+
+    fun cargarPublicacionesDeUsuario(userId: Long) {
+        _publicacionesPublicas.value = UiState.Loading
+        viewModelScope.launch {
+            try {
+                val r = api.getProductos()
+                if (r.isSuccessful) {
+                    val posts = (r.body() ?: emptyList())
+                        .filter { it.usuarioId == userId && !it.estado.equals("vendido", ignoreCase = true) }
+                    _publicacionesPublicas.value = UiState.Success(posts)
+                } else {
+                    _publicacionesPublicas.value = UiState.Error("Error ${r.code()}")
+                }
+            } catch (e: Exception) {
+                _publicacionesPublicas.value = UiState.Error("Sin conexión")
             }
         }
     }

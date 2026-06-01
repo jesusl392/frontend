@@ -12,6 +12,7 @@ import com.google.gson.Gson
 import com.unicundi.unimarket.data.model.Mensaje
 import com.unicundi.unimarket.data.model.Sesion
 import com.unicundi.unimarket.data.network.StompClient
+import com.unicundi.unimarket.R
 import com.unicundi.unimarket.databinding.FragmentChatBinding
 import com.unicundi.unimarket.ui.adapter.ChatAdapter
 import com.unicundi.unimarket.ui.adapter.MensajeChat
@@ -76,6 +77,16 @@ class ChatFragment : Fragment() {
         }
 
         binding.btnVolverChat.setOnClickListener { findNavController().popBackStack() }
+
+        // Tocar avatar o nombre → perfil público del interlocutor
+        val irAPerfil = View.OnClickListener {
+            if (receiverId > 0L) {
+                val bundle = Bundle().apply { putLong("userId", receiverId) }
+                findNavController().navigate(R.id.action_chat_to_perfilPublico, bundle)
+            }
+        }
+        binding.imgAvatarChatHeader.setOnClickListener(irAPerfil)
+        binding.txtNombreChat.setOnClickListener(irAPerfil)
 
         adapter = ChatAdapter()
         binding.recyclerChat.layoutManager = LinearLayoutManager(requireContext()).apply {

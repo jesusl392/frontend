@@ -94,7 +94,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@null"
-                        android:hint="ejemplo@gmail.com"
+                        android:hint="ejemplo@ucundinamarca.edu.co"
                         android:inputType="textEmailAddress"
                         android:textSize="15sp"
                         android:textColor="@color/texto_primario"

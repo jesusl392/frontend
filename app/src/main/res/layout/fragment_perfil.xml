@@ -166,6 +166,59 @@
             </androidx.cardview.widget.CardView>
         </LinearLayout>
 
+        <!-- Mis Reseñas -->
+        <androidx.cardview.widget.CardView android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp" android:layout_marginBottom="12dp"
+            app:cardCornerRadius="16dp" app:cardElevation="2dp" app:cardBackgroundColor="@color/blanco">
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical"
+                    android:paddingStart="16dp" android:paddingEnd="16dp"
+                    android:paddingTop="16dp" android:paddingBottom="8dp">
+
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:orientation="vertical">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Mis Reseñas" android:textSize="15sp" android:textStyle="bold"
+                            android:textColor="@color/texto_primario"/>
+                        <TextView android:id="@+id/tvTotalResenas"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="Sin reseñas aún" android:textSize="12sp"
+                            android:textColor="@color/gris_texto"/>
+                    </LinearLayout>
+
+                    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:orientation="vertical" android:gravity="center">
+                        <TextView android:id="@+id/tvPromedioEstrellas"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="—" android:textSize="28sp" android:textStyle="bold"
+                            android:textColor="@color/texto_primario" android:gravity="center"/>
+                        <RatingBar android:id="@+id/ratingBarPerfil"
+                            android:layout_width="wrap_content" android:layout_height="16dp"
+                            android:isIndicator="true" android:numStars="5" android:stepSize="0.1"
+                            android:rating="0" style="@style/Widget.AppCompat.RatingBar.Small"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerResenas"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"/>
+
+                <TextView android:id="@+id/tvResenaVacio"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="Nadie te ha calificado todavía"
+                    android:textSize="13sp" android:textColor="@color/gris_texto"
+                    android:gravity="center" android:padding="20dp"
+                    android:visibility="gone"/>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
         <!-- Soporte -->
         <androidx.cardview.widget.CardView android:layout_width="match_parent"
             android:layout_height="wrap_content" android:layout_marginStart="16dp"
